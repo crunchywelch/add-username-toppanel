@@ -1,30 +1,25 @@
-/*
-  Add Username to Top Panel GNOME extension
-  Created by William Brendaw (williambrendaw@gmail.com)
-
-  Inspired from Add Username to Top Panel (https://extensions.gnome.org/extension/813/add-user-and-host-name-to-panel/)
-
-  Hack it!
-*/
-const Clutter = imports.gi.Clutter;
+/*Derived from Simple-Username.  https://extensions.gnome.org/extension/807/simple-name/*/
 const St = imports.gi.St;
 const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
 
 let label;
-let aggregateMenu;
-let children;
 
 function init() {
-  label = new St.Label({ text: GLib.get_real_name(), y_align: Clutter.ActorAlign.CENTER, style_class: "username-label" });
-  aggregateMenu = Main.panel.statusArea["aggregateMenu"];
-  powerIndicator = aggregateMenu._power.indicators;
+    label = new St.Button({style_class: 'userHost-extension-format',
+                           reactive: true,
+                           can_focus: true,
+                           x_fill: true,
+                           y_fill: false,
+                           track_hover: true,
+                           label: GLib.get_host_name()});
 }
 
 function enable() {
-  powerIndicator.add_child(label);
+    let children = Main.panel._rightBox.get_children();
+    Main.panel._rightBox.insert_child_at_index(label, children.length-1);
 }
 
 function disable() {
-  powerIndicator.remove_child(label);
+    Main.panel._rightBox.remove_child(label);
 }

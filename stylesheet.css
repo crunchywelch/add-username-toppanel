@@ -1,6 +1,10 @@
-
-.username-label {
-  margin-left: 7px;
-  margin-right: 5px;
-  vertical-align: middle;
+.userHost-extension-format {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    padding: 2px;
+    font-family: Helvetica;
+    color: #ddd;
+    text-shadow: black 0px 4px 3px 0px;
+    background-color: rgba(10,10,10,0.7);
 }
